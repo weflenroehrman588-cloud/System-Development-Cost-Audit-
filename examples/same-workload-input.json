@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "project_name": "示例科研信息系统",
+    "currency": "CNY",
+    "price_base_date": "2026-08-23",
+    "tax_basis": "含税",
+    "start_year": 2026,
+    "horizon_years": 5,
+    "discount_rate": 0.03,
+    "simulation_runs": 0,
+    "random_seed": 20260823
+  },
+  "same_workload_costing": {
+    "enabled": true,
+    "workload_hours": 1180.5,
+    "internal_hourly_rate_cny": 100,
+    "internal_direct_cost_cny": 8000,
+    "person_month_hours": 174,
+    "external_monthly_rate_cny": 26112,
+    "external_direct_cost_cny": 8000,
+    "procurement_risk_rate": 0.1,
+    "recurring_basis_mapping": {
+      "internal": "replacement",
+      "external_rebuild": "replacement",
+      "procurement_budget": "budget"
+    },
+    "scope_note": "三种口径采用相同工作范围和内部核定工时；功能点仅用于范围复核"
+  },
+  "items": []
+}

@@ -1,0 +1,79 @@
+{
+  "meta": {
+    "project_name": "示例科研信息系统",
+    "currency": "CNY",
+    "price_base_date": "2026-08-23",
+    "tax_basis": "含税",
+    "start_year": 2026,
+    "horizon_years": 5,
+    "discount_rate": 0.03,
+    "simulation_runs": 20000,
+    "random_seed": 20260823
+  },
+  "same_workload_costing": {
+    "enabled": false,
+    "workload_hours": 1180.5,
+    "internal_hourly_rate_cny": 100,
+    "internal_direct_cost_cny": 8000,
+    "person_month_hours": 174,
+    "external_monthly_rate_cny": 26112,
+    "external_direct_cost_cny": 8000,
+    "procurement_risk_rate": 0.1,
+    "recurring_basis_mapping": {
+      "internal": "replacement",
+      "external_rebuild": "replacement",
+      "procurement_budget": "budget"
+    },
+    "scope_note": "三种口径采用相同工作范围和内部核定工时；功能点仅用于范围复核"
+  },
+  "items": [
+    {
+      "id": "DEV-FE-001",
+      "name": "前端重建",
+      "basis": "replacement",
+      "category": "建设开发",
+      "subcategory": "前端",
+      "module": "用户门户",
+      "phase": "建设期",
+      "cost_nature": "one_time",
+      "year": 2026,
+      "quantity": 2.0,
+      "unit": "人月",
+      "unit_price_cny": 30000,
+      "allocation_rate": 1.0,
+      "uncertainty": {
+        "low_factor": 0.8,
+        "most_likely_factor": 1.0,
+        "high_factor": 1.3
+      },
+      "evidence_grade": "D",
+      "source": "正式供应商报价或市场调研链接",
+      "notes": "仅用于市场重建口径"
+    },
+    {
+      "id": "OPS-CLOUD-001",
+      "name": "生产服务器",
+      "basis": "replacement",
+      "category": "基础设施",
+      "subcategory": "云服务器",
+      "module": "生产环境",
+      "phase": "运行期",
+      "cost_nature": "recurring",
+      "year": 2026,
+      "end_year": 2030,
+      "annual_growth_rate": 0.03,
+      "quantity": 1,
+      "unit": "年",
+      "unit_price_cny": 6000,
+      "allocation_rate": 1.0,
+      "uncertainty": {
+        "low_factor": 0.9,
+        "most_likely_factor": 1.0,
+        "high_factor": 1.2
+      },
+      "evidence_grade": "D",
+      "source": "厂商官方价格计算器，记录规格、地域和查询日期",
+      "notes": "促销与续费价格分情景"
+    }
+  ]
+}
