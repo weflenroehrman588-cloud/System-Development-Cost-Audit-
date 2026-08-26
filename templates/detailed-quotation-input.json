@@ -1,0 +1,247 @@
+{
+  "meta": {
+    "project_name": "示例科研数据平台建设项目",
+    "version": "V1.0",
+    "price_base_date": "2026-08-26",
+    "currency": "CNY",
+    "tax_basis": "含税预算估算",
+    "monthly_rate_cny": 26112,
+    "person_month_days": 21.75,
+    "risk_reserve_rate": 0.15,
+    "duration": "4个月"
+  },
+  "personnel": [
+    {
+      "name": "负责人A",
+      "role": "项目负责人",
+      "responsibility": "范围、技术路线、质量门禁、重大问题决策与验收",
+      "focus_modules": ["M01", "M04"]
+    },
+    {
+      "name": "协调A",
+      "role": "沟通与协调",
+      "responsibility": "需求沟通、资料归集、会议组织、培训与验收协调",
+      "focus_modules": ["M01", "M04"]
+    },
+    {
+      "name": "开发A",
+      "role": "全栈开发",
+      "responsibility": "前后端、接口、权限、集成、测试与部署",
+      "focus_modules": ["M02", "M03"]
+    },
+    {
+      "name": "数据A",
+      "role": "数据处理和发布",
+      "responsibility": "数据清洗、元数据、空间数据入库、服务发布与质量检查",
+      "focus_modules": ["M03"]
+    }
+  ],
+  "current_system_baseline": [
+    {
+      "id": "S01.01",
+      "module": "现有门户",
+      "function": "数据检索",
+      "content": "支持按关键词和分类检索已有数据资源",
+      "status": "已实现",
+      "evidence": "需求文档、页面与接口",
+      "integration": "保留现有能力，补充统一筛选和回归测试",
+      "pricing": "既有能力不重复计价，仅计新增改造项"
+    },
+    {
+      "id": "S01.02",
+      "module": "现有后台",
+      "function": "用户与角色",
+      "content": "用户、角色和菜单权限管理",
+      "status": "已实现",
+      "evidence": "代码与数据库表",
+      "integration": "复用账户体系，扩展数据权限",
+      "pricing": "仅扩展部分进入 WBS"
+    }
+  ],
+  "modules": [
+    {
+      "id": "M01",
+      "name": "项目治理与范围基线",
+      "purpose": "冻结范围、口径、责任和验收基线，避免漏项与重复计价",
+      "integration": "梳理现有系统资产，明确复用、改造、新建和排除项",
+      "phase": "阶段一",
+      "items": [
+        {
+          "id": "M01.01",
+          "name": "现状资产盘点",
+          "description": "盘点页面、接口、数据库、部署、数据资源和文档，形成现有系统功能基线",
+          "build_type": "梳理",
+          "owner_role": "项目负责人",
+          "difficulty": "中",
+          "days": 3,
+          "phase": "阶段一",
+          "acceptance": "形成可追溯的现状资产与功能清单",
+          "evidence_grade": "B",
+          "person_days": {"负责人A": 1.5, "协调A": 1.5}
+        },
+        {
+          "id": "M01.02",
+          "name": "范围与验收基线",
+          "description": "逐模块确认建设边界、依赖、交付物、验收标准和责任分工",
+          "build_type": "治理",
+          "owner_role": "项目负责人",
+          "difficulty": "高",
+          "days": 3,
+          "phase": "阶段一",
+          "acceptance": "范围矩阵、验收矩阵和责任矩阵通过评审",
+          "evidence_grade": "C",
+          "person_days": {"负责人A": 2, "协调A": 1}
+        }
+      ]
+    },
+    {
+      "id": "M02",
+      "name": "门户与业务融合",
+      "purpose": "在现有门户上扩展统一检索、详情和受控下载能力",
+      "integration": "复用现有页面框架、账户和数据详情流程",
+      "phase": "阶段二",
+      "items": [
+        {
+          "id": "M02.01",
+          "name": "统一检索改造",
+          "description": "融合关键词、主题、空间、时间和数据类型筛选，统一结果排序与分页",
+          "build_type": "改造",
+          "owner_role": "全栈开发",
+          "difficulty": "高",
+          "days": 6,
+          "phase": "阶段二",
+          "acceptance": "筛选、排序、分页和无结果状态通过测试",
+          "evidence_grade": "C",
+          "person_days": {"开发A": 5, "数据A": 1}
+        },
+        {
+          "id": "M02.02",
+          "name": "数据详情融合",
+          "description": "详情页展示元数据、文件树、统计摘要、空间分布和访问条件",
+          "build_type": "新增",
+          "owner_role": "全栈开发",
+          "difficulty": "高",
+          "days": 5,
+          "phase": "阶段二",
+          "acceptance": "详情信息完整，文件可选择，权限状态清晰",
+          "evidence_grade": "C",
+          "person_days": {"开发A": 4, "数据A": 1}
+        },
+        {
+          "id": "M02.03",
+          "name": "受控下载",
+          "description": "实现登录校验、数据授权、短时下载令牌、审计日志和异常提示",
+          "build_type": "新增",
+          "owner_role": "全栈开发",
+          "difficulty": "高",
+          "days": 5,
+          "phase": "阶段二",
+          "acceptance": "未授权不可下载，令牌过期失效，下载行为可审计",
+          "evidence_grade": "C",
+          "person_days": {"负责人A": 1, "开发A": 4}
+        }
+      ]
+    },
+    {
+      "id": "M03",
+      "name": "数据治理与空间服务",
+      "purpose": "规范数据、元数据和空间服务发布，支撑检索、预览与共享",
+      "integration": "与现有数据库、文件存储和门户详情接口集成",
+      "phase": "阶段三",
+      "items": [
+        {
+          "id": "M03.01",
+          "name": "元数据模型与入库",
+          "description": "建立元数据字段、校验、映射、版本和批量导入流程",
+          "build_type": "新增",
+          "owner_role": "数据处理和发布",
+          "difficulty": "高",
+          "days": 6,
+          "phase": "阶段三",
+          "acceptance": "样例数据通过校验、入库、检索和版本追踪",
+          "evidence_grade": "C",
+          "person_days": {"开发A": 2, "数据A": 4}
+        },
+        {
+          "id": "M03.02",
+          "name": "空间服务发布",
+          "description": "完成空间数据入库、坐标检查、图层样式以及 WMS/WFS 服务发布",
+          "build_type": "新增",
+          "owner_role": "数据处理和发布",
+          "difficulty": "高",
+          "days": 7,
+          "phase": "阶段三",
+          "acceptance": "样例图层可查询、预览和按权限访问",
+          "evidence_grade": "C",
+          "person_days": {"开发A": 2, "数据A": 5}
+        }
+      ]
+    },
+    {
+      "id": "M04",
+      "name": "测试、交付与培训",
+      "purpose": "完成质量验证、部署、文档、培训和验收移交",
+      "integration": "覆盖现有功能回归及新增模块联调",
+      "phase": "阶段四",
+      "items": [
+        {
+          "id": "M04.01",
+          "name": "集成与回归测试",
+          "description": "覆盖核心业务、权限、接口、数据质量、性能和既有功能回归",
+          "build_type": "交付",
+          "owner_role": "项目负责人",
+          "difficulty": "高",
+          "days": 5,
+          "phase": "阶段四",
+          "acceptance": "测试用例执行完成，阻断缺陷清零",
+          "evidence_grade": "C",
+          "person_days": {"负责人A": 1, "开发A": 3, "数据A": 1}
+        },
+        {
+          "id": "M04.02",
+          "name": "部署、文档与培训",
+          "description": "完成部署、备份恢复验证、操作维护文档、培训和验收资料",
+          "build_type": "交付",
+          "owner_role": "沟通与协调",
+          "difficulty": "中",
+          "days": 5,
+          "phase": "阶段四",
+          "acceptance": "系统可运行，文档齐全，培训签到与验收资料完整",
+          "evidence_grade": "C",
+          "person_days": {"负责人A": 1, "协调A": 2, "开发A": 1, "数据A": 1}
+        }
+      ]
+    }
+  ],
+  "implementation_plan": [
+    {
+      "phase": "阶段一",
+      "period": "第1-2周",
+      "work": "现状盘点、范围冻结、验收与责任基线",
+      "deliverables": "现状清单、WBS、验收矩阵、实施计划",
+      "acceptance_payment": "范围基线评审通过",
+      "payment_ratio": "20%"
+    },
+    {
+      "phase": "阶段二至三",
+      "period": "第3-12周",
+      "work": "门户融合、数据治理、空间服务和联调",
+      "deliverables": "可演示系统、接口文档、数据与服务清单",
+      "acceptance_payment": "阶段功能演示和测试通过",
+      "payment_ratio": "50%"
+    },
+    {
+      "phase": "阶段四",
+      "period": "第13-16周",
+      "work": "测试整改、部署、培训和验收移交",
+      "deliverables": "部署系统、测试报告、文档和培训材料",
+      "acceptance_payment": "终验及资料移交完成",
+      "payment_ratio": "30%"
+    }
+  ],
+  "exclusions": [
+    "不含服务器、存储、专线、第三方商业软件和外部测评采购费用。",
+    "不含未列入 WBS 的历史数据治理、批量迁移和新增业务需求。",
+    "现有功能本体不重复计价，仅对明确列入 WBS 的改造、融合和回归工作计价。"
+  ]
+}

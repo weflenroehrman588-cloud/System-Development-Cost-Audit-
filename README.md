@@ -12,6 +12,9 @@
 - 输出一年、三年和五年 TCO，可选折现现值；
 - 生成适合内部管理复核的成本专项评估报告；
 - 支持“全部采用内部工作小时”的同工时换价模式。
+- 按“系统—模块—功能项”生成分部分项工作量清单与报价；
+- 融合现有系统基线与新增功能，统计人员职责、模块—人员矩阵和个人工作量；
+- 生成可复算 JSON/CSV/Markdown，以及紧凑的 A4 纵向 Excel/Word 成果。
 
 ## 同工时换价原则
 
@@ -72,6 +75,18 @@ python3 scripts/calculate_costs.py \
 完整示例输出见 [examples/same-workload-output.md](examples/same-workload-output.md)。
 
 详细输入、逐文件分析、报告生成和证据要求见 [USAGE.md](USAGE.md)。
+
+分部分项详细报价示例：
+
+```bash
+python3 -m pip install -r requirements-docs.txt
+python3 scripts/generate_detailed_quotation.py \
+  templates/detailed-quotation-input.json \
+  --output-dir /tmp/detailed-quotation \
+  --formats all
+```
+
+该模式会拒绝功能人日与人员分配不一致的输入，并输出模块汇总、功能明细、现有系统基线、人员统计、模块人员矩阵及实施计划。
 
 ## 适用边界
 

@@ -11,6 +11,7 @@
 | 同工时外部重建 | 同一工作量改用外部综合费率需要多少 | 内部核定工时、外部费率和直接费用 |
 | 简化采购预算 | 外部重建金额加透明风险准备后是多少 | 外部重建金额和采购风险率 |
 | 年度运行与 TCO | 建设后持续运行需要多少 | 服务器、存储、网络、电力、AI 和维护数据 |
+| 分部分项详细报价 | 各模块、功能和人员分别投入多少、如何计价 | 建设要求、现有系统基线、WBS、人日、费率和验收标准 |
 
 不同口径分别报告，不相加、不平均。
 
@@ -76,3 +77,34 @@ python3 scripts/calculate_costs.py input.json \
 核心数据主要来自专家估计或公开市场信息时，应标记为初步估算。只有取得并核对工资福利、工时、合同、发票、资产台账、云账单和 AI 账单后，才可讨论实际发生成本。
 
 正式采购前仍应在冻结范围下取得有效供应商报价；同工时外部重建和简化采购预算只是内部决策参考。
+
+## 7. 生成分部分项工作量与报价方案
+
+当用户提供建设要求、工程量清单模板，或要求同时统计模块、功能、人员和报价时，复制 `templates/detailed-quotation-input.json`：
+
+- `current_system_baseline` 记录现有能力、证据、融合方式和是否重复计价；
+- `modules[].items[]` 拆到可独立说明主要内容、验收标准和人日的最小计价项；
+- `person_days` 把每个功能项的人日分到具体人员，其合计必须等于该项 `days`；
+- `implementation_plan` 记录阶段、交付物、验收/付款条件；
+- `exclusions` 明确硬件、商业软件、数据迁移、外部测评和维护等边界。
+
+仅生成标准库支持的可复算成果：
+
+```bash
+python3 scripts/generate_detailed_quotation.py input.json \
+  --output-dir output \
+  --prefix 工作量统计与报价方案 \
+  --formats json,csv,md
+```
+
+生成 Excel 和 A4 纵向 Word：
+
+```bash
+python3 -m pip install -r requirements-docs.txt
+python3 scripts/generate_detailed_quotation.py input.json \
+  --output-dir output \
+  --prefix 工作量统计与报价方案 \
+  --formats all
+```
+
+脚本会校验功能—人员、模块—人员、个人—项目三层人日及金额。详细结构、取整分摊和验收要求见 `references/detailed-workload-quotation.md`。
